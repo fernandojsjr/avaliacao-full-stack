@@ -44,7 +44,7 @@ public class TransferenciaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
 	}
 	
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<Transferencia> update(@PathVariable Long id, @RequestBody @Valid TransferenciaDTO dto){
 		return ResponseEntity.ok(service.update(id, dto));
 	}

@@ -28,16 +28,20 @@ public class Transferencia {
 	@NotEmpty(message = "Conta Destino requerida")
 	private String contaDestino;
 	
-	@NotEmpty(message = "Data de Agendamento requerida")
+	//@NotEmpty(message = "Data de Agendamento requerida")
 	private LocalDate dataAgendamento;
 	
-	@NotEmpty(message = "Data de Transferencia requerida")
+	//@NotEmpty(message = "Data de Transferencia requerida")
 	private LocalDate dataTransferencia;
 	
-	@NotEmpty(message = "Valor de Transferencia requerida")
+	//@NotEmpty(message = "Valor de Transferencia requerida")
 	private Double valorTransferencia;
 	
 	private Double valorTaxa;
+	
+	protected Transferencia() {
+		
+	}
 	
 	private Transferencia(Builder builder) {
 		this.contaOrigem = builder.getContaOrigem();
@@ -96,7 +100,7 @@ public class Transferencia {
 		this.valorTransferencia = valorTransferencia;
 	}
 	
-	protected Double getValorTaxa() {
+	public Double getValorTaxa() {
 		return valorTaxa;
 	}
 

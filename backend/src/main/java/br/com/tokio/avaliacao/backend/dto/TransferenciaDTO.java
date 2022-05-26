@@ -3,6 +3,7 @@ package br.com.tokio.avaliacao.backend.dto;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Builder;
 import lombok.Data;
@@ -17,9 +18,9 @@ public class TransferenciaDTO {
 	@NotEmpty(message = "Conta Destino requerida")
 	private String contaDestino;
 	
-	@NotEmpty(message = "Data de Agendamento requerida")
+	//@NotNull(message = "Data de Agendamento requerida")
 	private LocalDate dataTransferencia;
 	
-	@NotEmpty(message = "Valor de Transferencia requerida")
+	//@NotNull(message = "Valor de Transferencia requerida")
 	private Double valorTransferencia;
 }

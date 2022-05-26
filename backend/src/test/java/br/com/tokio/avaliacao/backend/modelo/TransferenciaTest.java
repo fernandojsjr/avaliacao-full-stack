@@ -6,10 +6,8 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.tokio.avaliacao.backend.dto.TransferenciaDTO;
-
 class TransferenciaTest {
-	
+		
 	@Test
 	void testTransferenciaBuilder() {
 		
@@ -19,7 +17,6 @@ class TransferenciaTest {
 		LocalDate dataTransf = dataAgend.plusDays(15);
 		Double valor = 250.45d;
 		Long qtdDias = 15l;
-		
 		
 		Transferencia t = Transferencia.builder()
 				.setContaOrigem(contaOrigem)
