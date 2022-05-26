@@ -2,19 +2,41 @@ package br.com.tokio.avaliacao.backend.modelo;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-import java.beans.Transient;
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import br.com.tokio.avaliacao.backend.dto.TransferenciaDTO.TransferenciaDTOBuilder;
 import br.com.tokio.avaliacao.backend.factory.TaxaFactory;
-import br.com.tokio.avaliacao.backend.main.CalculoTaxa;
 
+@Entity
+@Table(name = "transferencia")
 public class Transferencia {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
+	@NotEmpty(message = "Conta Origem requerida")
 	private String contaOrigem;
+	
+	@NotEmpty(message = "Conta Destino requerida")
 	private String contaDestino;
+	
+	@NotEmpty(message = "Data de Agendamento requerida")
 	private LocalDate dataAgendamento;
+	
+	@NotEmpty(message = "Data de Transferencia requerida")
 	private LocalDate dataTransferencia;
+	
+	@NotEmpty(message = "Valor de Transferencia requerida")
 	private Double valorTransferencia;
+	
 	private Double valorTaxa;
 	
 	private Transferencia(Builder builder) {
@@ -23,14 +45,22 @@ public class Transferencia {
 		this.dataAgendamento = LocalDate.now();
 		this.dataTransferencia = builder.getDataTransferencia();
 		this.valorTransferencia = builder.getValorTransferencia();
-		this.valorTaxa = new TaxaFactory(this).calcularValorTaxa();
+		this.setValorTaxa(new TaxaFactory(this).calcularValorTaxa());
 	}
+	
+	public static Builder builder() {
+		return new Builder();
+	}
+	
+	public void updateVlrTaxa(Double calcularValorTaxa) {
+		this.setValorTaxa(calcularValorTaxa);
+	}	
 
 	public String getContaOrigem() {
 		return contaOrigem;
 	}
 
-	protected void setContaOrigem(String contaOrigem) {
+	public void setContaOrigem(String contaOrigem) {
 		this.contaOrigem = contaOrigem;
 	}
 
@@ -38,7 +68,7 @@ public class Transferencia {
 		return contaDestino;
 	}
 
-	protected void setContaDestino(String contaDestino) {
+	public void setContaDestino(String contaDestino) {
 		this.contaDestino = contaDestino;
 	}
 
@@ -46,7 +76,7 @@ public class Transferencia {
 		return dataAgendamento;
 	}
 
-	protected void setDataAgendamento(LocalDate dataAgendamento) {
+	public void setDataAgendamento(LocalDate dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
 	}
 
@@ -54,7 +84,7 @@ public class Transferencia {
 		return dataTransferencia;
 	}
 
-	protected void setDataTransferencia(LocalDate dataTransferencia) {
+	public void setDataTransferencia(LocalDate dataTransferencia) {
 		this.dataTransferencia = dataTransferencia;
 	}
 
@@ -62,7 +92,7 @@ public class Transferencia {
 		return valorTransferencia;
 	}
 
-	protected void setValorTransferencia(Double valorTransferencia) {
+	public void setValorTransferencia(Double valorTransferencia) {
 		this.valorTransferencia = valorTransferencia;
 	}
 	
@@ -70,9 +100,14 @@ public class Transferencia {
 		return valorTaxa;
 	}
 
+	public void setValorTaxa(Double valorTaxa) {
+		this.valorTaxa = valorTaxa;
+	}
+
 	public long getQtdDias() {
 		return DAYS.between(this.dataAgendamento, this.dataTransferencia);
 	}
+
 
 	public static class Builder {
 		
@@ -131,9 +166,5 @@ public class Transferencia {
 		
 		
 	}
-	
-	
-	
-	
-	
+
 }

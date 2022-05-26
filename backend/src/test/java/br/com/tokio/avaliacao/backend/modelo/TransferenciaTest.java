@@ -1,15 +1,12 @@
 package br.com.tokio.avaliacao.backend.modelo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.InstanceOf;
 
-import br.com.tokio.avaliacao.backend.main.TaxacaoTipoA;
-import br.com.tokio.avaliacao.backend.main.TaxacaoTipoB;
-import br.com.tokio.avaliacao.backend.main.TaxacaoTipoC;
+import br.com.tokio.avaliacao.backend.dto.TransferenciaDTO;
 
 class TransferenciaTest {
 	
@@ -24,7 +21,7 @@ class TransferenciaTest {
 		Long qtdDias = 15l;
 		
 		
-		Transferencia t = new Transferencia.Builder()
+		Transferencia t = Transferencia.builder()
 				.setContaOrigem(contaOrigem)
 				.setContaDestino(contaDestino)
 				.setDataTransferencia(dataTransf) // 04/06
@@ -48,7 +45,7 @@ class TransferenciaTest {
 		
 		Double valorTaxa = 106.00;
 		
-		Transferencia transf = new Transferencia.Builder()
+		Transferencia transf = Transferencia.builder()
 				.setContaOrigem("000001")
 				.setContaDestino("000002")
 				.setDataTransferencia(LocalDate.now())
@@ -63,7 +60,7 @@ class TransferenciaTest {
 		
 		Double valorTaxa = 112.00;
 		
-		Transferencia transf = new Transferencia.Builder()
+		Transferencia transf = Transferencia.builder()
 				.setContaOrigem("000001")
 				.setContaDestino("000002")
 				.setDataTransferencia(LocalDate.now().plusDays(10))
@@ -78,7 +75,7 @@ class TransferenciaTest {
 		
 		Double valorTaxa = 108.20;
 		
-		Transferencia transf = new Transferencia.Builder()
+		Transferencia transf = Transferencia.builder()
 				.setContaOrigem("000001")
 				.setContaDestino("000002")
 				.setDataTransferencia(LocalDate.now().plusDays(12))
