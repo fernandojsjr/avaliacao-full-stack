@@ -2,9 +2,12 @@ package br.com.tokio.avaliacao.backend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import br.com.tokio.avaliacao.backend.entity.Transferencia;
 import br.com.tokio.avaliacao.backend.main.CalculoTaxa;
 import br.com.tokio.avaliacao.backend.main.TaxacaoTipoC;
 import br.com.tokio.avaliacao.backend.main.OperacaoTipoCAte20Dias;
@@ -16,6 +19,19 @@ import br.com.tokio.avaliacao.backend.main.TaxacaoTipoA;
 
 @SpringBootTest
 class CalculoTaxasTests {
+	
+	@Test
+	void testMain() {
+		Transferencia t = new Transferencia.Builder()
+				.setContaOrigem("001")
+				.setContaDestino("002")
+				.setDataTransferencia(LocalDate.now().plusDays(15)) // 04/06
+				.setVlrTransferencia(250.45d)
+				.build();
+		
+		System.out.println(String.format("Conta Origem: %s \nConta Destino: %s, \nData.Agendamento: %s\nData.Transf: %s,\nValor: %s\nQtd.Dias: %s", 
+				t.getContaOrigem(), t.getContaDestino(), t.getDataAgendamento(), t.getDataTransferencia(), t.getVlrTransferencia(), t.getQtdDias()));
+	}
 
 	@Test
 	void transferenciaNoMesmoDia() {
@@ -66,7 +82,8 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new OperacaoTipoCAte30Dias(valorTransferencia);
 		
-		assertEquals(104.70, taxa.calulaTaxa());
+		assertEquals(104.70, taxa.calulaTaxa());		
+
 	}		
 	
 	@Test
