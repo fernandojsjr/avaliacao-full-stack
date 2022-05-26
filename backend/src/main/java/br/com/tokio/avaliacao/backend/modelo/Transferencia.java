@@ -1,4 +1,4 @@
-package br.com.tokio.avaliacao.backend.entity;
+package br.com.tokio.avaliacao.backend.modelo;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
@@ -12,7 +12,7 @@ public class Transferencia {
 	private String contaDestino;
 	private LocalDate dataAgendamento;
 	private LocalDate dataTransferencia;
-	private Double vlrTransferencia = 0.0d;
+	private Double valorTransferencia = 0.0d;
 	
 	private CalculoTaxa taxa = null;
 	
@@ -21,7 +21,7 @@ public class Transferencia {
 		this.contaDestino = builder.getContaDestino();
 		this.dataAgendamento = LocalDate.now();
 		this.dataTransferencia = builder.getDataTransferencia();
-		this.vlrTransferencia = builder.getVlrTransferencia();
+		this.valorTransferencia = builder.getValorTransferencia();
 		this.taxa = null;
 	}
 
@@ -57,12 +57,12 @@ public class Transferencia {
 		this.dataTransferencia = dataTransferencia;
 	}
 
-	public Double getVlrTransferencia() {
-		return vlrTransferencia;
+	public Double getValorTransferencia() {
+		return valorTransferencia;
 	}
 
-	protected void setVlrTransferencia(Double vlrTransferencia) {
-		this.vlrTransferencia = vlrTransferencia;
+	protected void setValorTransferencia(Double valorTransferencia) {
+		this.valorTransferencia = valorTransferencia;
 	}
 
 	public CalculoTaxa getTaxa() {
@@ -83,7 +83,7 @@ public class Transferencia {
 		private String contaDestino;
 		private LocalDate dataAgendamento;
 		private LocalDate dataTransferencia;
-		private Double vlrTransferencia = 0.0d;
+		private Double valorTransferencia = 0.0d;
 		
 		public Builder() {
 		}
@@ -123,12 +123,12 @@ public class Transferencia {
 			return this;
 		}
 		
-		public Double getVlrTransferencia() {
-			return vlrTransferencia;
+		public Double getValorTransferencia() {
+			return valorTransferencia;
 		}
 		
-		public Builder setVlrTransferencia(Double vlrTransferencia) {
-			this.vlrTransferencia = vlrTransferencia;
+		public Builder setValorTransferencia(Double valorTransferencia) {
+			this.valorTransferencia = valorTransferencia;
 			return this;
 		}
 		

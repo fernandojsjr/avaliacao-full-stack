@@ -2,16 +2,20 @@ package br.com.tokio.avaliacao.backend.main;
 
 public class TaxacaoTipoB implements CalculoTaxa {
 	
-	private Double vlrTaxa = 12.00;
-	private Double vlrTransferencia = 0.00;
+	/*
+	 * Taxação para transferencias feitas até 10 dias
+	 */
+	
+	private Double valorTaxa = 12.00;
+	private Double valorTransferencia = 0.00;
 
-	public TaxacaoTipoB(Double vlrTransferencia) {
-		this.vlrTransferencia = vlrTransferencia;
+	public TaxacaoTipoB(Double valorTransferencia) {
+		this.valorTransferencia = valorTransferencia;
 	}
 
 	@Override
 	public Double calulaTaxa() {
-		return vlrTransferencia + vlrTaxa;
+		return valorTransferencia + valorTaxa;
 	}
 
 }

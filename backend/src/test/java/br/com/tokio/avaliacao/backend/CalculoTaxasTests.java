@@ -7,15 +7,11 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.com.tokio.avaliacao.backend.entity.Transferencia;
 import br.com.tokio.avaliacao.backend.main.CalculoTaxa;
-import br.com.tokio.avaliacao.backend.main.TaxacaoTipoC;
-import br.com.tokio.avaliacao.backend.main.OperacaoTipoCAte20Dias;
-import br.com.tokio.avaliacao.backend.main.OperacaoTipoCAte30Dias;
-import br.com.tokio.avaliacao.backend.main.OperacaoTipoCAte40Dias;
-import br.com.tokio.avaliacao.backend.main.OperacaoTipoD;
-import br.com.tokio.avaliacao.backend.main.TaxacaoTipoB;
 import br.com.tokio.avaliacao.backend.main.TaxacaoTipoA;
+import br.com.tokio.avaliacao.backend.main.TaxacaoTipoB;
+import br.com.tokio.avaliacao.backend.main.TaxacaoTipoC;
+import br.com.tokio.avaliacao.backend.modelo.Transferencia;
 
 @SpringBootTest
 class CalculoTaxasTests {
@@ -26,11 +22,11 @@ class CalculoTaxasTests {
 				.setContaOrigem("001")
 				.setContaDestino("002")
 				.setDataTransferencia(LocalDate.now().plusDays(15)) // 04/06
-				.setVlrTransferencia(250.45d)
+				.setValorTransferencia(250.45d)
 				.build();
 		
 		System.out.println(String.format("Conta Origem: %s \nConta Destino: %s, \nData.Agendamento: %s\nData.Transf: %s,\nValor: %s\nQtd.Dias: %s", 
-				t.getContaOrigem(), t.getContaDestino(), t.getDataAgendamento(), t.getDataTransferencia(), t.getVlrTransferencia(), t.getQtdDias()));
+				t.getContaOrigem(), t.getContaDestino(), t.getDataAgendamento(), t.getDataTransferencia(), t.getValorTransferencia(), t.getQtdDias()));
 	}
 
 	@Test
@@ -60,7 +56,7 @@ class CalculoTaxasTests {
 		
 		Double valorTransferencia = 100.0;
 		
-		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia);
+		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 11l);
 		
 		assertEquals(108.20, taxa.calulaTaxa());
 	}
@@ -70,7 +66,7 @@ class CalculoTaxasTests {
 		
 		Double valorTransferencia = 100.0;
 		
-		CalculoTaxa taxa = new OperacaoTipoCAte20Dias(valorTransferencia);
+		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 21l);
 		
 		assertEquals(106.90, taxa.calulaTaxa());
 	}
@@ -80,7 +76,7 @@ class CalculoTaxasTests {
 		
 		Double valorTransferencia = 100.0;
 		
-		CalculoTaxa taxa = new OperacaoTipoCAte30Dias(valorTransferencia);
+		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 31l);
 		
 		assertEquals(104.70, taxa.calulaTaxa());		
 
@@ -91,11 +87,12 @@ class CalculoTaxasTests {
 		
 		Double valorTransferencia = 100.0;
 		
-		CalculoTaxa taxa = new OperacaoTipoCAte40Dias(valorTransferencia);
+		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 41l);
 		
 		assertEquals(101.70, taxa.calulaTaxa());
 	}
 	
+	/*
 	@Test
 	void TaxacaoTipoDTipoA() {
 		Double valorTransferencia = 1_000.00d;
@@ -124,7 +121,7 @@ class CalculoTaxasTests {
 		assertEquals(2_165.09, taxa.calulaTaxa());		
 		
 	}	
-
+*/
 	
 
 }
