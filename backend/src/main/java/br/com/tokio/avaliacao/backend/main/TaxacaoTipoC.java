@@ -3,8 +3,6 @@ package br.com.tokio.avaliacao.backend.main;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import org.apache.commons.math3.util.Precision;
-
 public class TaxacaoTipoC implements CalculoTaxa {
 	
 	private Double pctTaxa;
@@ -24,7 +22,7 @@ public class TaxacaoTipoC implements CalculoTaxa {
 	}
 
 	@Override
-	public Double calulaTaxa() {
+	public Double calcularValorTaxa() {
 		Double taxa = this.valorTransferencia * this.pctTaxa;
 		return BigDecimal.valueOf(taxa).setScale(2, RoundingMode.CEILING).doubleValue();
 	}

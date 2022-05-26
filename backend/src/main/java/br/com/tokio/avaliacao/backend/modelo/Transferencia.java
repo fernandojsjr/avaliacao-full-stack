@@ -2,8 +2,10 @@ package br.com.tokio.avaliacao.backend.modelo;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+import java.beans.Transient;
 import java.time.LocalDate;
 
+import br.com.tokio.avaliacao.backend.factory.TaxaFactory;
 import br.com.tokio.avaliacao.backend.main.CalculoTaxa;
 
 public class Transferencia {
@@ -12,9 +14,8 @@ public class Transferencia {
 	private String contaDestino;
 	private LocalDate dataAgendamento;
 	private LocalDate dataTransferencia;
-	private Double valorTransferencia = 0.0d;
-	
-	private CalculoTaxa taxa = null;
+	private Double valorTransferencia;
+	private Double valorTaxa;
 	
 	private Transferencia(Builder builder) {
 		this.contaOrigem = builder.getContaOrigem();
@@ -22,7 +23,7 @@ public class Transferencia {
 		this.dataAgendamento = LocalDate.now();
 		this.dataTransferencia = builder.getDataTransferencia();
 		this.valorTransferencia = builder.getValorTransferencia();
-		this.taxa = null;
+		this.valorTaxa = new TaxaFactory(this).calcularValorTaxa();
 	}
 
 	public String getContaOrigem() {
@@ -64,15 +65,11 @@ public class Transferencia {
 	protected void setValorTransferencia(Double valorTransferencia) {
 		this.valorTransferencia = valorTransferencia;
 	}
-
-	public CalculoTaxa getTaxa() {
-		return taxa;
-	}
-
-	protected void setTaxa(CalculoTaxa taxa) {
-		this.taxa = taxa;
-	}
 	
+	protected Double getValorTaxa() {
+		return valorTaxa;
+	}
+
 	public long getQtdDias() {
 		return DAYS.between(this.dataAgendamento, this.dataTransferencia);
 	}

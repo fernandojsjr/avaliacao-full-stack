@@ -14,8 +14,9 @@ public class TaxacaoTipoA implements CalculoTaxa {
 		this.vlrTransferencia = valorTransferencia;
 	}
 
+
 	@Override
-	public Double calulaTaxa() {
+	public Double calcularValorTaxa() {
 		return (vlrTransferencia * pctTaxa) + valorTaxa;
 	}
 

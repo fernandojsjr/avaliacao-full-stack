@@ -19,8 +19,8 @@ public class OperacaoTipoD implements CalculoTaxa {
 	}
 
 	@Override
-	public Double calulaTaxa() {
-		return taxacao.calulaTaxa();
+	public Double calcularValorTaxa() {
+		return taxacao.calcularValorTaxa();
 	}
 
 }

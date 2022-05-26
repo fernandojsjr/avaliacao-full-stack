@@ -6,7 +6,7 @@ import br.com.tokio.avaliacao.backend.main.TaxacaoTipoB;
 import br.com.tokio.avaliacao.backend.main.TaxacaoTipoC;
 import br.com.tokio.avaliacao.backend.modelo.Transferencia;
 
-public class TaxaFactory {
+public class TaxaFactory implements CalculoTaxa {
 
 	private Transferencia transferencia;
 
@@ -14,12 +14,12 @@ public class TaxaFactory {
 		this.transferencia = transferencia;
 	}
 	
-	public CalculoTaxa getTaxa() {
+	@Override
+	public Double calcularValorTaxa() {
 		
 		CalculoTaxa retorno = null;
 		
 		long qtdDias = this.transferencia.getQtdDias();
-		
 		
 		if(qtdDias <= 0) {
 			retorno = new TaxacaoTipoA(transferencia.getValorTransferencia());
@@ -29,7 +29,7 @@ public class TaxaFactory {
 			retorno = new TaxacaoTipoC(transferencia.getValorTransferencia(), qtdDias);
 		}
 		
-		return retorno;
+		return retorno.calcularValorTaxa();
 	}
 	
 }

@@ -14,7 +14,7 @@ public class TaxacaoTipoB implements CalculoTaxa {
 	}
 
 	@Override
-	public Double calulaTaxa() {
+	public Double calcularValorTaxa() {
 		return valorTransferencia + valorTaxa;
 	}
 

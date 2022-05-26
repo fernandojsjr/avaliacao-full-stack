@@ -36,7 +36,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoA(valorTransferencia);
 		
-		assertEquals(106.0, taxa.calulaTaxa());
+		assertEquals(106.0, taxa.calcularValorTaxa());
 		
 	}
 	
@@ -47,7 +47,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoB(valorTransferencia);
 		
-		assertEquals(112.00, taxa.calulaTaxa());
+		assertEquals(112.00, taxa.calcularValorTaxa());
 		
 	}
 	
@@ -58,7 +58,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 11l);
 		
-		assertEquals(108.20, taxa.calulaTaxa());
+		assertEquals(108.20, taxa.calcularValorTaxa());
 	}
 	
 	@Test
@@ -68,7 +68,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 21l);
 		
-		assertEquals(106.90, taxa.calulaTaxa());
+		assertEquals(106.90, taxa.calcularValorTaxa());
 	}
 	
 	@Test
@@ -78,7 +78,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 31l);
 		
-		assertEquals(104.70, taxa.calulaTaxa());		
+		assertEquals(104.70, taxa.calcularValorTaxa());		
 
 	}		
 	
@@ -89,7 +89,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 41l);
 		
-		assertEquals(101.70, taxa.calulaTaxa());
+		assertEquals(101.70, taxa.calcularValorTaxa());
 	}
 	
 	/*
