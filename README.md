@@ -1,62 +1,27 @@
-# Entregáveis
- Pequena documentação no README explicando suas decisões arquiteturais, versões de linguagem,
-ferramentas utilizadas e instruções para a subida do projeto.
+# Sistema de Agendamento de Transferência Financeira.
 
- É obrigatório a criação de um projeto no seu Github para que vejamos os passos feitos
-através dos commits.
+Sistema desenvolvido em 2 modulos:
 
-# Avaliação
+1 - Backend - Responsevel por disponibilizar uma API para
+2 - Frontend - Interface que utiliza os recursos disponíveis na API para manutenção do cadastro de Transferências 
 
-Desenvolver tanto a API quanto o front-end (Spring boot e Vue no front, caso não tenha conhecimentos de vue, aceitamos o front com angular)
+# Backend
 
-O objetivo dessa tarefa é avaliar como você vai desenvolver o código em termos de estilo,
-eficiência, qualidade e prazo de entrega.
+Fornece uma API com as chamadas necessárias para o controle do cadastro
 
-A tarefa é a seguinte:
+Spring Boot - versão 2.6.9-SNAPSHOT
+Banco de Dados - H2
 
-Desenvolver um sistema de agendamento de transferências financeiras.
 
-1) O usuário deve poder agendar uma transferência financeira com as seguintes
- informações:
- Conta de origem (padrão XXXXXX)
- Conta de destino (padrão XXXXXX)
- Valor da transferência
- Taxa (a ser calculada)
- Data da transferência (data que será realizada a transferência)
- Data de agendamento (hoje)
- 
-2) Cada tipo de transação segue uma regra diferente para cálculo da taxa
+Servidor desenvolvido utilizando-se Java + SpringBoot Framework v.2.6.9-SNAPSHOT, com o objetivo de fornecer uma API para comunicação com o frontend
 
- A: Tranferências no mesmo dia do agendamento tem uma taxa de $3 mais 3% do valor a
-ser transferido;
+# Frontend
 
-B: Tranferências até 10 dias da data de agendamento possuem uma taxa de $12.
+Aplicativo SPA que disponibiliza uma interface amigavel para as chamadas disponiveis no servidor para manutenção e controle do cadastro de Transferencias Bancarias
 
-C: Operações do tipo C tem uma taxa regressiva conforme a data de
-transferência:
+SPA desenvolvido com Angular v.12
+Material Design (Components)
 
- acima de 10 dias da data de agendamento 8.2%
- 
- acima de 20 dias da data de agendamento 6.9%
- 
- acima de 30 dias da data de agendamento 4.7%
- 
- acima de 40 dias da data de agendamento 1.7%
- 
- D: Operações do tipo D tem a taxa igual a A, B ou C dependendo do valor da
-transferência.
 
- Valores até $1.000 seguem a taxação tipo A
- 
- Valores de $1.001 até $2.000 seguem a taxação tipo B
- 
- Valores maiores que $2.000 seguem a taxação tipo C
- 
-Obs: Caso não haja taxa aplicável, lançar um alerta sobre o erro.
-
-3) O usuário deve poder ver todos os agendamentos cadastrados.
-
-Nota: A persistência deve ser feita em banco de dados em memória (h2, por exemplo).
-Boa sorte!
 
 
