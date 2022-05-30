@@ -2,7 +2,11 @@ package br.com.tokio.avaliacao.backend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAmount;
+import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,10 +22,16 @@ class CalculoTaxasTests {
 	
 	@Test
 	void testMain() {
+		
+		
+		Instant d2 = Instant.now();
+		Instant.now().plus(1, ChronoUnit.DAYS);
+		
 		Transferencia t = new Transferencia.Builder()
 				.setContaOrigem("001")
 				.setContaDestino("002")
-				.setDataTransferencia(LocalDate.now().plusDays(15)) // 04/06
+				//.setDataTransferencia(LocalDate.now().plusDays(15)) // 04/06
+				.setDataTransferencia(Date.from(Instant.now().plus(15, ChronoUnit.DAYS)))
 				.setValorTransferencia(250.45d)
 				.build();
 		
@@ -36,7 +46,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoA(valorTransferencia);
 		
-		assertEquals(106.0, taxa.calcularValorTaxa());
+		assertEquals(6.0, taxa.calcularValorTaxa());
 		
 	}
 	
@@ -58,7 +68,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 11l);
 		
-		assertEquals(108.20, taxa.calcularValorTaxa());
+		assertEquals(8.21, taxa.calcularValorTaxa());
 	}
 	
 	@Test
@@ -68,7 +78,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 21l);
 		
-		assertEquals(106.90, taxa.calcularValorTaxa());
+		assertEquals(6.90, taxa.calcularValorTaxa());
 	}
 	
 	@Test
@@ -78,7 +88,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 31l);
 		
-		assertEquals(104.70, taxa.calcularValorTaxa());		
+		assertEquals(4.70, taxa.calcularValorTaxa());		
 
 	}		
 	
@@ -89,7 +99,7 @@ class CalculoTaxasTests {
 		
 		CalculoTaxa taxa = new TaxacaoTipoC(valorTransferencia, 41l);
 		
-		assertEquals(101.70, taxa.calcularValorTaxa());
+		assertEquals(1.71, taxa.calcularValorTaxa());
 	}
 	
 	/*

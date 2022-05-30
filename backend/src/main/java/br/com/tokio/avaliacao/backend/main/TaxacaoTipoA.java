@@ -7,7 +7,7 @@ public class TaxacaoTipoA implements CalculoTaxa {
 	 */
 	
 	private Double valorTaxa = 3.0;
-	private Double pctTaxa = 1.03;
+	private Double pctTaxa = 0.03;
 	private Double vlrTransferencia = 0.0;
 	
 	public TaxacaoTipoA(Double valorTransferencia) {

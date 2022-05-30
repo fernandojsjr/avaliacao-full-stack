@@ -1,0 +1,46 @@
+<mat-toolbar class="app-title">Cadastrar Transferência</mat-toolbar>
+<div class="main-div">
+  <mat-card class="center width50" >
+    <form autocomplete="off" novalidate [formGroup]="cadastroForm" (ngSubmit)="submit()">
+
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input matInput maxlength="6" 
+                 minlength="6" 
+                 placeholder="Conta Origem" 
+                 name="contaOrigem" 
+                 formControlName="contaOrigem">
+          <mat-error *ngIf="(cadastroForm.touched || cadastroForm.dirty)">Conta deve conter 6 caracteres</mat-error>
+        </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput maxlength="6" minlength="6" placeholder="Conta Destino" name="contaDestino" formControlName="contaDestino">
+            <mat-error *ngIf="(cadastroForm.touched || cadastroForm.dirty)">Conta deve conter 6 caracteres</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput formControlName="dataAgendamento" name="dataAgendamento"
+            placeholder="Data de Agendamento" >
+          </mat-form-field>          
+
+          <mat-form-field class="full-width">
+            <input matInput 
+                  (click)="pickerDtaTransferencia.open()"
+                  [matDatepicker]="pickerDtaTransferencia" placeholder="Data de Transferência" formControlName="dataTransferencia">
+            <mat-datepicker-toggle matSuffix [for]="pickerDtaTransferencia"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDtaTransferencia></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput type="number" class="input-right-align" placeholder="Valor" name="valorTransferencia" formControlName="valorTransferencia">
+          </mat-form-field>          
+          
+          
+        </mat-card-content>
+        <mat-card-actions>
+          <button type="submit" color="accent" mat-raised-button>Salvar</button>
+          <button type="reset" color="warn" mat-raised-button>Cancelar</button>
+        </mat-card-actions>
+      </form>
+      </mat-card>
+    </div>

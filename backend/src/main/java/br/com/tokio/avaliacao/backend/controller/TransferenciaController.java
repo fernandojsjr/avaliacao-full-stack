@@ -54,6 +54,4 @@ public class TransferenciaController {
 		return ResponseEntity.ok(service.delete(id));
 	}
 	
-	
-	
 }

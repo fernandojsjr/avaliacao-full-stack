@@ -13,12 +13,12 @@ public class TaxacaoTipoC implements CalculoTaxa {
 		this.valorTransferencia = valorTransferencia;
 		
 		if(qtdDias > 10 && qtdDias <= 20 ) {
-			this.pctTaxa = 1.082;			
+			this.pctTaxa = 0.082;			
 		}else if(qtdDias > 20 && qtdDias <= 30 ) {
-			this.pctTaxa = 1.069;
+			this.pctTaxa = 0.069;
 		}else if(qtdDias > 30 && qtdDias <= 40) {
-			this.pctTaxa = 1.047;
-		}else this.pctTaxa = 1.017;
+			this.pctTaxa = 0.047;
+		}else this.pctTaxa = 0.017;
 	}
 
 	@Override

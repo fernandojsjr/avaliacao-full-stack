@@ -2,7 +2,10 @@ package br.com.tokio.avaliacao.backend.modelo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +16,9 @@ class TransferenciaTest {
 		
 		String contaOrigem = "000001";
 		String contaDestino = "000002";
-		LocalDate dataAgend = LocalDate.now();
-		LocalDate dataTransf = dataAgend.plusDays(15);
+		Date dataAgend = new Date();
+		//LocalDate dataTransf = dataAgend.plusDays(15);
+		Date dataTransf = Date.from(Instant.now().plus(15, ChronoUnit.DAYS));
 		Double valor = 250.45d;
 		Long qtdDias = 15l;
 		
@@ -40,12 +44,12 @@ class TransferenciaTest {
 	@Test
 	void TransferenciaMesmoDia() {
 		
-		Double valorTaxa = 106.00;
+		Double valorTaxa = 6.00;
 		
 		Transferencia transf = Transferencia.builder()
 				.setContaOrigem("000001")
 				.setContaDestino("000002")
-				.setDataTransferencia(LocalDate.now())
+				.setDataTransferencia(new Date())
 				.setValorTransferencia(100.00d)
 				.build();
 		
@@ -56,11 +60,12 @@ class TransferenciaTest {
 	void TransferenciaAte10Dias() {
 		
 		Double valorTaxa = 112.00;
+		Date dtaTransf = Date.from(Instant.now().plus(10, ChronoUnit.DAYS));
 		
 		Transferencia transf = Transferencia.builder()
 				.setContaOrigem("000001")
 				.setContaDestino("000002")
-				.setDataTransferencia(LocalDate.now().plusDays(10))
+				.setDataTransferencia(dtaTransf)
 				.setValorTransferencia(100.00d)
 				.build();
 		
@@ -70,12 +75,14 @@ class TransferenciaTest {
 	@Test
 	void TransferenciaAcimaDe10Dias() {
 		
-		Double valorTaxa = 108.20;
+		Double valorTaxa = 8.21;
+		
+		Date dtaTransf  = Date.from(Instant.now().plus(15, ChronoUnit.DAYS));
 		
 		Transferencia transf = Transferencia.builder()
 				.setContaOrigem("000001")
 				.setContaDestino("000002")
-				.setDataTransferencia(LocalDate.now().plusDays(12))
+				.setDataTransferencia(dtaTransf)
 				.setValorTransferencia(100.00d)
 				.build();
 		
